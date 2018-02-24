@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+
 
 export default class AsyncService extends Component {
   static makeGetRequestFetch(url, header) {
@@ -20,6 +22,16 @@ export default class AsyncService extends Component {
       }).catch(err => {
         reject(err);
       })
+    });
+  }
+  
+  static makeGetRequestAxios(url, header) {
+    return new Promise( (resolve, reject) => {
+      axios.get(url, header).then(res => {
+        resolve(res);
+      }).catch(err => {
+        reject(err);
+      });
     });
   }
 }
